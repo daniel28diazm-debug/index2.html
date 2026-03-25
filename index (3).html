@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contador Fiscal en Querétaro | ADG 28 Consultores</title>
+  <meta name="description" content="Reducimos tus impuestos legalmente. Contabilidad, asesoría fiscal y legal para empresas en Querétaro. +35 años de experiencia. Consulta gratuita."/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0d1b2a; --navy-mid: #1a2f47;
+      --gold: #c9a84c; --gold-light: #e8c97e;
+      --cream: #f5f0e8; --white: #ffffff; --gray: #6b7280;
+      --silver: #f4f5f7; --silver-border: #dde1e7;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); overflow-x: hidden; }
+
+    /* HERO */
+    .hero { background: var(--navy); min-height: calc(100vh - 70px); display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%); pointer-events: none; }
+    .hero-left { padding: 60px 60px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: var(--gold-light); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 8px 16px; border-radius: 100px; width: fit-content; margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
+    .badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: var(--white); line-height: 1.15; margin-bottom: 20px; animation: fadeUp 0.6s 0.1s ease both; }
+    .hero h1 span { color: var(--gold); }
+    .hero-desc { font-size: 1.02rem; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 460px; margin-bottom: 24px; font-weight: 300; animation: fadeUp 0.6s 0.2s ease both; }
+    .hook-strip { display: flex; flex-direction: column; gap: 9px; margin-bottom: 32px; animation: fadeUp 0.6s 0.25s ease both; }
+    .hook-item { display: flex; align-items: center; gap: 10px; font-size: 0.90rem; color: rgba(255,255,255,0.78); }
+    .hook-dot { width: 7px; height: 7px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+    .hero-stats { display: flex; gap: 40px; margin-bottom: 44px; animation: fadeUp 0.6s 0.3s ease both; }
+    .stat-number { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.6s 0.4s ease both; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 0.95rem; padding: 16px 30px; border-radius: 8px; text-decoration: none; transition: all 0.25s ease; box-shadow: 0 4px 24px rgba(201,168,76,0.35); }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--white); font-weight: 500; font-size: 0.95rem; padding: 16px 24px; border-radius: 8px; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: all 0.25s ease; }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
+
+    /* FORM */
+    .hero-right { display: flex; align-items: center; justify-content: center; padding: 60px 60px 60px 40px; position: relative; z-index: 1; }
+    .form-card { background: var(--white); border-radius: 20px; padding: 44px 38px; width: 100%; max-width: 420px; box-shadow: 0 32px 80px rgba(0,0,0,0.4); animation: fadeUp 0.7s 0.2s ease both; }
+    .form-card h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .form-card .sub { font-size: 0.86rem; color: var(--gray); margin-bottom: 28px; }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.80rem; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #e5e7eb; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.91rem; color: var(--navy); background: #fafafa; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); background: var(--white); }
+    .form-group textarea { resize: none; height: 82px; }
+    .btn-form { width: 100%; padding: 15px; background: var(--navy); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.97rem; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; margin-top: 6px; transition: all 0.2s ease; }
+    .btn-form:hover { background: var(--navy-mid); transform: translateY(-1px); }
+    .form-trust { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px; font-size: 0.76rem; color: var(--gray); }
+
+
+    .trust-bar { background: var(--gold); padding: 16px 60px; display: flex; justify-content: center; gap: 44px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* SERVICES */
+    .services { padding: 96px 60px; background: var(--white); }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; color: var(--navy); max-width: 560px; line-height: 1.2; margin-bottom: 10px; }
+    .section-subtitle { font-size: 0.98rem; color: var(--gray); max-width: 540px; line-height: 1.65; margin-bottom: 52px; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .service-card { background: var(--white); border-radius: 14px; padding: 30px 26px; border: 1.5px solid var(--navy); transition: all 0.3s ease; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(13,27,42,0.15); border-color: var(--gold); }
+    .svc-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--navy); line-height: 1; margin-bottom: 10px; opacity: 0.85; }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+    .service-card p { font-size: 0.85rem; color: #4b5563; line-height: 1.65; }
+
+    /* WHY */
+    .why { background: var(--navy); padding: 96px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .why-left h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); color: var(--white); line-height: 1.2; margin-bottom: 18px; }
+    .why-left h2 span { color: var(--gold); }
+    .why-left p { color: rgba(255,255,255,0.55); line-height: 1.7; font-size: 1rem; margin-bottom: 36px; }
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .why-list li { display: flex; align-items: flex-start; gap: 12px; color: rgba(255,255,255,0.8); font-size: 0.93rem; line-height: 1.5; }
+    .check { width: 20px; height: 20px; background: rgba(201,168,76,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .why-right { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .why-stat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 28px 20px; text-align: center; }
+    .why-stat-card:first-child { grid-column: span 2; background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.2); }
+    .why-stat-number { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .why-stat-label { font-size: 0.80rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* CTA */
+    .cta-bottom { background: var(--silver); border-top: 1px solid var(--silver-border); padding: 96px 60px; text-align: center; }
+    .cta-tag { display: inline-block; background: var(--white); color: var(--navy-mid); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 7px 18px; border-radius: 100px; margin-bottom: 20px; border: 1px solid var(--silver-border); }
+    .cta-bottom h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.8rem); color: var(--navy); margin-bottom: 14px; line-height: 1.2; }
+    .cta-bottom p { color: var(--gray); font-size: 1.02rem; margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+    .cta-hooks { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 36px; }
+    .cta-hook-item { display: flex; align-items: center; gap: 7px; font-size: 0.86rem; font-weight: 600; color: var(--navy); background: var(--white); border: 1px solid var(--silver-border); padding: 8px 16px; border-radius: 100px; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-main { display: inline-flex; align-items: center; gap: 10px; background: var(--navy); color: var(--white); font-weight: 700; font-size: 1rem; padding: 17px 38px; border-radius: 8px; text-decoration: none; transition: all 0.25s ease; box-shadow: 0 4px 20px rgba(13,27,42,0.2); }
+    .btn-cta-main:hover { background: var(--navy-mid); transform: translateY(-2px); }
+    .btn-cta-wa { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 1rem; padding: 17px 38px; border-radius: 8px; text-decoration: none; transition: all 0.25s ease; }
+    .btn-cta-wa:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* VALUE PROMISE BAR */
+    .value-promise { background: var(--navy-mid); padding: 48px 60px; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .vp-item { display: flex; flex-direction: column; gap: 8px; padding: 24px; background: rgba(255,255,255,0.04); border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); }
+    .vp-title { font-weight: 700; color: var(--gold); font-size: 0.97rem; }
+    .vp-desc { color: rgba(255,255,255,0.65); font-size: 0.87rem; line-height: 1.55; }
+    @media (max-width: 900px) { .value-promise { grid-template-columns: 1fr; padding: 36px 24px; } }
+
+    /* FOOTER */
+    footer { background: var(--navy); padding: 30px 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .footer-brand { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--white); font-size: 1.05rem; }
+    .footer-brand span { color: var(--gold); }
+    footer p { font-size: 0.80rem; color: rgba(255,255,255,0.4); }
+
+    /* PAIN SECTION */
+    .pain-section { background: var(--navy); padding: 80px 60px; }
+    .pain-inner { max-width: 1100px; margin: 0 auto; }
+    .pain-header { margin-bottom: 44px; }
+    .pain-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 0; }
+    .pain-title span { color: var(--gold); }
+    .pain-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 44px; }
+    .pain-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 24px 20px; text-align: center; transition: all 0.25s; }
+    .pain-card:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.06); }
+    .pain-icon { font-size: 2rem; margin-bottom: 12px; }
+    .pain-card p { color: rgba(255,255,255,0.8); font-size: 0.93rem; line-height: 1.55; font-weight: 500; }
+    .pain-cta { text-align: center; }
+    .pain-cta-text { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.65; margin-bottom: 22px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .btn-pain-cta { display: inline-flex; align-items: center; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 1rem; padding: 16px 36px; border-radius: 8px; text-decoration: none; transition: all 0.25s; box-shadow: 0 4px 20px rgba(201,168,76,0.3); }
+    .btn-pain-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* CLIENTS */
+    .clients-section { background: var(--white); padding: 80px 60px; text-align: center; }
+    .clients-logos { display: flex; justify-content: center; align-items: center; gap: 48px; flex-wrap: wrap; margin-top: 36px; }
+    .client-logo-box { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .client-logo-text { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); letter-spacing: 1px; padding: 20px 32px; border: 2px solid var(--silver-border); border-radius: 12px; background: var(--silver); transition: all 0.25s; }
+    .client-logo-text:hover { border-color: var(--gold); box-shadow: 0 6px 24px rgba(201,168,76,0.15); }
+    .client-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--cream); padding: 80px 60px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 44px; }
+    .testimonial-card { background: var(--white); border-radius: 16px; padding: 30px 26px; border: 1.5px solid var(--silver-border); position: relative; }
+    .testimonial-card::before { content: '"'; font-family: 'Playfair Display',serif; font-size: 5rem; color: var(--gold); opacity: 0.3; position: absolute; top: 8px; left: 20px; line-height: 1; }
+    .testimonial-text { font-size: 0.93rem; color: #374151; line-height: 1.7; margin-bottom: 20px; padding-top: 28px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; color: var(--gold); font-family: 'Playfair Display',serif; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+    .author-name { font-weight: 700; font-size: 0.88rem; color: var(--navy); }
+    .author-biz { font-size: 0.77rem; color: var(--gray); margin-top: 1px; }
+    .stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 2px; }
+
+    /* VALUE PROPS near form */
+    .value-props { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #f0f0f0; }
+    .value-prop-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.83rem; color: #374151; line-height: 1.5; }
+    .value-prop-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 56px 24px 36px; }
+      .hero-right { padding: 0 24px 56px; }
+      .form-card { max-width: 100%; }
+      .trust-bar { padding: 14px 20px; gap: 16px; }
+      .pain-section { padding: 56px 24px; }
+      .pain-grid { grid-template-columns: 1fr 1fr; }
+      .services { padding: 60px 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .clients-section { padding: 56px 24px; }
+      .testimonials { padding: 56px 24px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .why { grid-template-columns: 1fr; padding: 60px 24px; gap: 44px; }
+      .cta-bottom { padding: 60px 24px; }
+      footer { padding: 22px 24px; flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .pain-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <h1>¿Pagas demasiado de impuestos? <span>Nosotros lo resolvemos.</span></h1>
+    <p class="hero-desc">En ADG 28 Consultores ayudamos a empresas y emprendedores a cumplir con el SAT, reducir impuestos legalmente y tener control total de sus finanzas. Más de 35 años de experiencia nos respaldan.</p>
+
+    <div class="hook-strip">
+      <div class="hook-item"><span class="hook-dot"></span>Reducimos tu carga fiscal de forma legal y estratégica</div>
+      <div class="hook-item"><span class="hook-dot"></span>Te regularizamos ante el SAT sin estrés</div>
+      <div class="hook-item"><span class="hook-dot"></span>Atención personalizada — no eres un número</div>
+      <div class="hook-item"><span class="hook-dot"></span>Primera consulta completamente gratuita</div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="https://wa.me/524422379144?text=Hola,%20me%20interesa%20conocer%20sus%20servicios%20contables" target="_blank" class="btn-primary">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.113.549 4.099 1.51 5.831L0 24l6.336-1.483A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.37l-.36-.213-3.727.872.939-3.626-.234-.373A9.818 9.818 0 1112 21.818z"/></svg>
+        WhatsApp — Escribir ahora
+      </a>
+      <a href="tel:4422379144" class="btn-secondary">
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        Llamar ahora
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="form-card">
+      <h2>Solicita una asesoría gratuita</h2>
+      <p class="sub">Respuesta rápida. Normalmente en menos de 1 hora.</p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required />
+        </div>
+        <div class="form-group">
+          <label for="tel">Teléfono</label>
+          <input type="tel" id="tel" placeholder="442 000 0000" required />
+        </div>
+        <div class="form-group">
+          <label for="servicio">¿Qué necesitas?</label>
+          <select id="servicio">
+            <option value="">Selecciona un servicio</option>
+            <option>Contabilidad y ahorro de impuestos</option>
+            <option>Regularización ante el SAT</option>
+            <option>Valuación de empresas</option>
+            <option>Controversias legales y fiscales</option>
+            <option>Formación y creación de empresas</option>
+            <option>Atención de requerimientos fiscales</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Cuéntanos brevemente tu situación</label>
+          <textarea id="mensaje" placeholder="¿En qué podemos ayudarte?"></textarea>
+        </div>
+        <button type="submit" class="btn-form">Quiero solicitar una asesoría gratuita →</button>
+      </form>
+      <div class="form-trust">
+        <svg width="13" height="13" fill="#22c55e" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        Tu información es privada y segura
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Contadores Certificados y Especializados</div>
+  <div class="trust-item"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>+35 Años de Experiencia en Querétaro</div>
+  <div class="trust-item"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>+100 Empresas y Personas Satisfechas</div>
+  <div class="trust-item"><svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Diagnóstico Fiscal Sin Costo</div>
+</div>
+
+<!-- PAIN POINTS -->
+<section class="pain-section">
+  <div class="pain-inner">
+    <div class="pain-header">
+      <div class="section-label" style="color:var(--gold)">¿Te identificas con alguna de estas situaciones?</div>
+      <h2 class="pain-title">Si respondiste sí a alguna, <span>es momento de llamarnos.</span></h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card"><div class="pain-icon">❓</div><p>¿No sabes cuánto debes pagar al SAT este mes?</p></div>
+      <div class="pain-card"><div class="pain-icon">📋</div><p>¿Te atrasaste con tus declaraciones y no sabes cómo ponerte al corriente?</p></div>
+      <div class="pain-card"><div class="pain-icon">⚠️</div><p>¿Tienes miedo de multas, recargos o una auditoría del SAT?</p></div>
+      <div class="pain-card"><div class="pain-icon">💡</div><p>¿Quieres pagar menos impuestos de forma legal sin arriesgar tu empresa?</p></div>
+    </div>
+    <div class="pain-cta">
+      <p class="pain-cta-text">Entendemos los retos de las empresas en Querétaro. <strong>Sabemos que tu tiempo es valioso — nosotros nos encargamos de los papeles, tú de los clientes.</strong></p>
+      <a href="https://wa.me/524422379144?text=Hola,%20quiero%20mi%20diagnóstico%20fiscal%20gratuito" target="_blank" class="btn-pain-cta">Quiero mi diagnóstico fiscal gratuito →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="section-label">+10 Áreas de Servicio</div>
+  <h2 class="section-title">Soluciones contables, fiscales y legales para hacer crecer tu empresa</h2>
+  <p class="section-subtitle">No solo registramos facturas; optimizamos tus impuestos y maximizamos tu rentabilidad. Consultoría integral en Querétaro con visión de negocio. Evita multas y recargos innecesarios — nos encargamos de tus impuestos para que tú te enfoques en tu negocio.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="svc-num">01</div>
+      <h3>Contabilidad General Estratégica en Ahorro de Impuestos</h3>
+      <p>Nos encargamos de tu contabilidad y declaraciones fiscales aplicando estrategias legales para optimizar y reducir tu carga tributaria — pagas solo lo que realmente debes.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">02</div>
+      <h3>Regularización de Contabilidad</h3>
+      <p>¿Tienes declaraciones atrasadas o registros desordenados? Revisamos, corregimos y te ponemos al corriente con el SAT sin complicaciones ni multas innecesarias.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">03</div>
+      <h3>Valuación de Empresas</h3>
+      <p>Emitimos dictámenes de valuación respaldados por corredores públicos certificados para que tomes decisiones estratégicas con total seguridad y certeza legal.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">04</div>
+      <h3>Asesoría en Controversias Legales y Fiscales</h3>
+      <p>Te representamos y asesoramos ante disputas con el SAT u otras autoridades. Defensa experta, estratégica y efectiva para proteger tu empresa y tu patrimonio.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">05</div>
+      <h3>Formación y Creación de Empresas</h3>
+      <p>Desde la idea hasta la constitución legal. Te acompañamos en cada paso para que tu empresa nazca con bases sólidas, seguras y fiscalmente optimizadas desde el inicio.</p>
+    </div>
+    <div class="service-card">
+      <div class="svc-num">06</div>
+      <h3>Atención de Requerimientos Fiscales</h3>
+      <p>Gestionamos de forma eficaz los requerimientos de las autoridades fiscales, protegiendo tus intereses y garantizando el cumplimiento normativo en todo momento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-label">Testimonios</div>
+  <h2 class="section-title">Empresas que crecieron con nuestra asesoría</h2>
+  <p class="section-subtitle">La confianza de nuestros clientes es nuestro mayor activo. Esto es lo que dicen quienes ya trabajan con nosotros.</p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-text">Llevaba años pagando de más al SAT sin saberlo. ADG 28 revisó mi contabilidad, encontró oportunidades que nadie más había visto y en 3 meses mi carga fiscal bajó considerablemente. Profesionales de verdad.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">MR</div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="author-name">Miguel R.</div>
+          <div class="author-biz">Dueño de empresa de transportes, Querétaro</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">Tenía declaraciones atrasadas de 2 años y vivía con el miedo de que el SAT me cayera encima. El equipo de ADG 28 me regularizó sin multas y me explicó todo paso a paso. Ahora duermo tranquila. ¡Los recomiendo ampliamente!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">LC</div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="author-name">Laura C.</div>
+          <div class="author-biz">Directora de boutique de ropa, Querétaro</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">Cuando abrí mi empresa no sabía nada de impuestos. ADG 28 me acompañó desde la constitución legal hasta la contabilidad mensual. Mi negocio lleva 4 años creciendo con bases sólidas y sin sustos fiscales.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">JA</div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="author-name">Jorge A.</div>
+          <div class="author-biz">Fundador de empresa de construcción, Querétaro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="why-left">
+    <h2>¿Por qué elegir <span>ADG 28 Consultores?</span></h2>
+    <p>No somos un despacho más. Somos el socio estratégico que tu empresa necesita para crecer con orden, control y tranquilidad fiscal.</p>
+    <ul class="why-list">
+      <li><span class="check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Contadores de confianza, certificados y especializados en Pymes</li>
+      <li><span class="check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Expertos en prevención de riesgos fiscales y legales</li>
+      <li><span class="check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Más de 35 años sirviendo a empresas en Querétaro</li>
+      <li><span class="check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Atención personalizada — no eres un número, eres un cliente</li>
+      <li><span class="check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Respuesta rápida — normalmente en menos de 1 hora</li>
+      <li><span class="check"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>Precios justos y transparentes — sin sorpresas</li>
+    </ul>
+  </div>
+  <div class="why-right">
+    <div class="why-stat-card"><div class="why-stat-number">+35</div><div class="why-stat-label">Años sirviendo a empresas en Querétaro</div></div>
+    <div class="why-stat-card"><div class="why-stat-number">+10</div><div class="why-stat-label">Áreas de servicio</div></div>
+    <div class="why-stat-card"><div class="why-stat-number">100%</div><div class="why-stat-label">Enfoque en tu éxito</div></div>
+  </div>
+</section>
+
+<!-- VALUE PROMISE BAR -->
+<section class="value-promise">
+  <div class="vp-item">
+    <div class="vp-title">🛡️ Cero Multas</div>
+    <div class="vp-desc">Blindamos tu empresa ante el SAT con revisiones preventivas y estrategias de cumplimiento.</div>
+  </div>
+  <div class="vp-item">
+    <div class="vp-title">📊 Eficiencia Fiscal</div>
+    <div class="vp-desc">Estrategias legales para que pagues solo lo que te corresponde — sin pagar de más.</div>
+  </div>
+  <div class="vp-item">
+    <div class="vp-title">📈 Reportes Claros</div>
+    <div class="vp-desc">Información financiera en tiempo real para que entiendas tus ganancias y tomes mejores decisiones.</div>
+  </div>
+</section>
+
+<!-- CTA BOTTOM -->
+<section class="cta-bottom">
+  <div class="cta-tag">Consulta Gratuita · Sin Compromisos · Cupos Limitados por Semana</div>
+  <h2>¿Listo para crecer con un contador que realmente trabaja para ti?</h2>
+  <p>Empresas en Querétaro ya optimizaron sus finanzas con nosotros. <strong>Agenda hoy tu consulta gratuita.</strong> Nos encargamos de tus impuestos para que tú te enfoques en tu negocio.</p>
+  <div class="cta-hooks">
+    <div class="cta-hook-item"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#1a2f47" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Diagnóstico fiscal sin costo</div>
+    <div class="cta-hook-item"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#1a2f47" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Consulta gratis con expertos certificados</div>
+    <div class="cta-hook-item"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="#1a2f47" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Respuesta en menos de 1 hora</div>
+  </div>
+  <div class="cta-buttons">
+    <a href="https://wa.me/524422379144?text=Hola,%20me%20interesa%20una%20asesoría%20gratuita%20con%20ADG%2028%20Consultores" target="_blank" class="btn-cta-wa">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.113.549 4.099 1.51 5.831L0 24l6.336-1.483A11.948 11.948 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.37l-.36-.213-3.727.872.939-3.626-.234-.373A9.818 9.818 0 1112 21.818z"/></svg>
+      Escribir por WhatsApp
+    </a>
+    <a href="tel:4422379144" class="btn-cta-main">
+      <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+      Llamar ahora · (442) 237-9144
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">ADG <span>28</span> Consultores</div>
+  <p>Av. Ejército Republicano 119-1, Col. Carretas, Querétaro · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d0b2a5aabfbeb1b4b7e2e890b8bfa4bdb1b9bcfeb3bfbd">[email&#160;protected]</a> · (442) 237-9144</p>
+  <p>© 2026 ADG 28 Consultores. Todos los derechos reservados.</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const tel = document.getElementById('tel').value;
+    const servicio = document.getElementById('servicio').value;
+    const mensaje = document.getElementById('mensaje').value;
+    const text = encodeURIComponent(`Hola
